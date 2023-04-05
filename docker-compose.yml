@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  api-wm:
+    image: api-wm
+    container_name: api-wm
+    ports:
+      - '5115:5115'
+    build:
+      context: .
+      dockerfile: src/Adapters/Driving/Api/Dockerfile
+    networks:
+      wm:
+        aliases:
+          - api-wm.local
+    
+networks:
+  wm:
+    driver: bridge

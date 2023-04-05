@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    system: apiwm
+    app: api-wm
+    version: "1.0"
+  name: api-wm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      system: apiwm
+      app: api-wm
+  template:
+    metadata:
+      labels:
+        system: apiwm
+        app: api-wm
+        version: "1.0"
+    spec:
+      containers:
+
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+          value: http://kubernetes.docker.internal:5115/
+        - name: AdminConfiguration__RequireHttpsMetadata
+          value: "false"
+        - name: Serilog__MinimumLevel__Default
+          value: Information
+        image: api-wm:latest
+        command: ["dotnet"]
+        args: ["Api.dll"]
+        imagePullPolicy: IfNotPresent
+        name: api-wm
+        ports:
+        - name: http
+          containerPort: 5115
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "250m"
+          limits:
+            memory: "250Mi"
+            cpu: "500m"
+      dnsPolicy: ClusterFirstWithHostNet
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    system: apiwm
+    app: api-wm
+    version: v1
+  name: api-wm
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 5115
+    protocol: TCP
+    targetPort: 5115
+  selector:
+    app: api-wm

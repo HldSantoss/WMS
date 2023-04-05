@@ -1,0 +1,30 @@
+.header {
+    font-size: 20px;
+    text-align: left;
+    color: black;
+    padding-bottom: 35px;
+}
+table {
+    font-size:18px;
+    width: 90%;
+    border-collapse: collapse;
+}
+td, th {
+    font-size: 120%;
+    font-size: 18px;
+    border: 1px solid gray;
+    padding: 15px;
+    font-size: 22px;
+    text-align: center;
+}
+table th {
+    font-size: 100%;
+    font-size: 18px;
+    background-color: rgb(75, 0, 128);
+    color: white;
+}
+itens {
+    margin-top: 10px;
+    font-size: 18px;
+    border-style: ridge;
+}

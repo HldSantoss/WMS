@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+
+  api-wm:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Services\GoodsReceiving\" />
+    <None Remove="Services\Orders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Services\GoodsReceiving\" />
+    <Folder Include="Services\Orders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Adapters\Driven\Infra.ServiceLayer\Infra.ServiceLayer.csproj" />
+    <ProjectReference Include="..\..\Adapters\Driven\Infra.Pdf\Infra.Pdf.csproj" />
+    <ProjectReference Include="..\..\Adapters\Driven\Infra.Intelipost\Infra.Intelipost.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Npgsql" Version="7.0.2" />
+    <PackageReference Include="Zebra.Printer.SDK" Version="2.15.2634" />
+  </ItemGroup>
+</Project>
